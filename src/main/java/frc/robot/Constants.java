@@ -11,7 +11,7 @@ public final class Constants {
     public static final boolean frontLeftInverted = true;
     public static final int backLeft = 1;
     public static final boolean backLeftInverted = true;
-    public static final int frontRight =13;
+    public static final int frontRight = 13;
     public static final boolean frontRightInverted = false;
     public static final int backRight = 3;
     public static final boolean backRightInverted = false;
@@ -20,7 +20,7 @@ public final class Constants {
   
   }
   public static class PneumaticConstants{
-    public static final int LiftSolenoid = 1;
+    public static final int liftSolenoid = 1;
     public static final int clawTiltSolenoidleft = 2;
     public static final int clawTiltSolenoidright = 3;
     public static final int clawActuatorleft = 4;
@@ -28,4 +28,5 @@ public final class Constants {
 
 
   }
+
 }

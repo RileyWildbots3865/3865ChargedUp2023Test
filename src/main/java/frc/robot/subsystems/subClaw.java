@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class subClaw extends SubsystemBase {
   /** Creates a new subClaw. */
   public subClaw() {}
-
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
