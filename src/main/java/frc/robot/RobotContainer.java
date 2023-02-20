@@ -29,8 +29,6 @@ public class RobotContainer {
   
 
 
-  
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -44,7 +42,7 @@ public class RobotContainer {
 
 
     driveTrain.setDefaultCommand(Commands.run(() -> driveTrain.drive(-m_driverOne.getLeftY(), -m_driverOne.getRightY()), driveTrain));
-    driverOne_A.onTrue(new InstantCommand() -> lift.toggle() );
+    //driverOne_A.onTrue(new InstantCommand() -> lift.toggle() );
   }
 
   /**
