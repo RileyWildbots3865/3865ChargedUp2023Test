@@ -21,10 +21,10 @@ public class subDriveTrain extends SubsystemBase {
 
   /** Creates a new subDriveTrain. */
   public subDriveTrain() {
-    frontLeft = new CANSparkMax(DriveConstants.frontLeft, MotorType.kBrushed);
-    backLeft = new CANSparkMax(DriveConstants.backLeft, MotorType.kBrushed);
-    frontRight = new CANSparkMax(DriveConstants.frontRight, MotorType.kBrushed);
-    backRight = new CANSparkMax(DriveConstants.backRight,MotorType.kBrushed);
+    frontLeft = new CANSparkMax(DriveConstants.frontLeft, MotorType.kBrushless);
+    backLeft = new CANSparkMax(DriveConstants.backLeft, MotorType.kBrushless);
+    frontRight = new CANSparkMax(DriveConstants.frontRight, MotorType.kBrushless);
+    backRight = new CANSparkMax(DriveConstants.backRight,MotorType.kBrushless);
 
     frontLeft.restoreFactoryDefaults();
     backLeft.restoreFactoryDefaults();
@@ -33,6 +33,8 @@ public class subDriveTrain extends SubsystemBase {
 
     frontLeft.setInverted(DriveConstants.frontLeftInverted);
     backLeft.setInverted(DriveConstants.backLeftInverted);
+    frontRight.setInverted(DriveConstants.frontLeftInverted);
+    backRight.setInverted(DriveConstants.backLeftInverted);
 
     leftGroup = new MotorControllerGroup(frontLeft, backLeft);
     rightGroup = new MotorControllerGroup(frontRight, backRight);
