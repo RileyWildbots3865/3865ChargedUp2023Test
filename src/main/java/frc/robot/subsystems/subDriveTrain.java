@@ -2,6 +2,8 @@
 
 package frc.robot.subsystems;
 
+import java.util.function.DoubleSupplier;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -33,8 +35,8 @@ public class subDriveTrain extends SubsystemBase {
 
     frontLeft.setInverted(DriveConstants.frontLeftInverted);
     backLeft.setInverted(DriveConstants.backLeftInverted);
-    frontRight.setInverted(DriveConstants.frontLeftInverted);
-    backRight.setInverted(DriveConstants.backLeftInverted);
+    frontRight.setInverted(DriveConstants.frontRightInverted);
+    backRight.setInverted(DriveConstants.backRightInverted);
 
     leftGroup = new MotorControllerGroup(frontLeft, backLeft);
     rightGroup = new MotorControllerGroup(frontRight, backRight);
@@ -45,6 +47,9 @@ public class subDriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+  public void drive(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed){
+    drive(leftSpeed.getAsDouble(), rightSpeed.getAsDouble());
   }
   public void drive(double leftSpeed, double rightSpeed){
     driveTrain.tankDrive(leftSpeed*DriveConstants.speedFactor, rightSpeed*DriveConstants.speedFactor);

@@ -8,6 +8,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.subDriveTrain;
 import frc.robot.subsystems.subPneumatics;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -27,7 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
   private final CommandXboxController m_driverOne = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  //private final subDriveTrain driveTrain = new subDriveTrain(); 
+  private final subDriveTrain driveTrain = new subDriveTrain(); 
   private final subPneumatics george = new subPneumatics();
 
 
@@ -38,10 +39,14 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    //driveTrain.setDefaultCommand(Commands.run(() -> driveTrain.drive(-m_driverOne.getLeftY(), -m_driverOne.getRightY()), driveTrain));
+    driveTrain.setDefaultCommand(Commands.run(() -> driveTrain.drive(
+      () -> MathUtil.applyDeadband(-m_driverOne.getLeftY(), 0.06), 
+      () -> MathUtil.applyDeadband(-m_driverOne.getRightY(), 0.06)),
+      driveTrain));
     m_driverOne.a().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
-    m_driverOne.b().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
+    m_driverOne.a().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
     m_driverOne.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
+    m_driverOne.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
     m_driverOne.y().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
 
   }
