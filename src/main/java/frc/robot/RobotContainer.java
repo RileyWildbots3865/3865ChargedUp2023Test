@@ -5,8 +5,6 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.subDriveTrain;
 import frc.robot.subsystems.subPneumatics;
@@ -15,6 +13,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,8 +27,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
   private final CommandXboxController m_driverOne = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final subDriveTrain driveTrain = new subDriveTrain(); 
+  //private final subDriveTrain driveTrain = new subDriveTrain(); 
   private final subPneumatics george = new subPneumatics();
 
 
@@ -40,13 +38,12 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+    //driveTrain.setDefaultCommand(Commands.run(() -> driveTrain.drive(-m_driverOne.getLeftY(), -m_driverOne.getRightY()), driveTrain));
+    m_driverOne.a().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
+    m_driverOne.b().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
+    m_driverOne.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
+    m_driverOne.y().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
 
-
-    driveTrain.setDefaultCommand(Commands.run(() -> driveTrain.drive(-m_driverOne.getLeftY(), -m_driverOne.getRightY()), driveTrain));
-    m_driverOne.a().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
   }
 
   /**
@@ -56,6 +53,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return new InstantCommand();
   }
 }

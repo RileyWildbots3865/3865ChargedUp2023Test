@@ -20,10 +20,9 @@ public final class Constants {
   
   }
   public static class PneumaticConstants{
-    public static final int liftSolenoid = 1;
-    public static final int clawTiltSolenoidleft = 2;
-    public static final int clawTiltSolenoidright = 3;
-    public static final int clawActuatorleft = 4;
+    public static final int liftSolenoid = 2;
+    public static final int clawTiltSolenoid = 1;
+    public static final int clawActuator = 4;
     public static final int clawActuatorright = 5;
 
 
