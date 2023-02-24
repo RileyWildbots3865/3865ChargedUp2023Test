@@ -27,16 +27,8 @@ public class subPneumatics extends SubsystemBase {
     //liftSolenoid = new Solenoid(PneumaticConstants.liftSolenoid, PneumaticsModuleType.CTREPCM, 0);
     clawTiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);// = new DoubleSolenoid(PneumaticConstants.clawTiltSolenoidright, PneumaticsModuleType.CTREPCM, 0,1);
     //clawTiltSolenoidright = new DoubleSolenoid(PneumaticConstants.clawTiltSolenoidright, PneumaticsModuleType.CTREPCM, 2,3);
-    //clawActuatorleft = new DoubleSolenoid(PneumaticConstants.clawActuatorleft, PneumaticsModuleType.CTREPCM, 4,5);
+    clawActuator = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 3,2);
     //clawActuatorright = new DoubleSolenoid(PneumaticConstants.clawActuatorright, PneumaticsModuleType.CTREPCM, 6,7);
-  }
-  
-  public void extend_lift() {
-    liftSolenoid.set(true);
-  }
-
-  public void retract_lift() {
-    liftSolenoid.set(false);
   }
 
   @Override

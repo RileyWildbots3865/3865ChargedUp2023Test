@@ -47,7 +47,11 @@ public class RobotContainer {
     m_driverOne.a().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
     m_driverOne.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
     m_driverOne.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverOne.y().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+    m_driverOne.y().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward)));
+    m_driverOne.y().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
+    m_driverOne.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
+    m_driverOne.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
+    m_driverOne.rightBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
 
   }
 
