@@ -12,9 +12,9 @@ public final class Constants {
     public static final int backLeft = 13;
     public static final boolean backLeftInverted = false;
     public static final int frontRight = 1;
-    public static final boolean frontRightInverted = false;
+    public static final boolean frontRightInverted = true;
     public static final int backRight = 3;
-    public static final boolean backRightInverted = false;
+    public static final boolean backRightInverted = true;
     public static final double speedFactor = 0.8;
 
   
