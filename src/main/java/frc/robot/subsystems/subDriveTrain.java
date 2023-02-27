@@ -26,7 +26,7 @@ public class subDriveTrain extends SubsystemBase {
     frontLeft = new CANSparkMax(DriveConstants.frontLeft, MotorType.kBrushless);
     backLeft = new CANSparkMax(DriveConstants.backLeft, MotorType.kBrushless);
     frontRight = new CANSparkMax(DriveConstants.frontRight, MotorType.kBrushless);
-    backRight = new CANSparkMax(DriveConstants.backRight,MotorType.kBrushless);
+    backRight = new CANSparkMax(DriveConstants.backRight, MotorType.kBrushless);
 
     frontLeft.restoreFactoryDefaults();
     backLeft.restoreFactoryDefaults();
@@ -47,6 +47,7 @@ public class subDriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    frontLeft.getAppliedOutput();
   }
   public void drive(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed){
     drive(leftSpeed.getAsDouble(), rightSpeed.getAsDouble());
