@@ -48,6 +48,14 @@ public class subDriveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     frontLeft.getAppliedOutput();
+    frontRight.getAppliedOutput();
+    frontLeft.getOutputCurrent();
+    frontRight.getOutputCurrent();
+    frontLeft.getBusVoltage();
+    frontRight.getBusVoltage();
+    frontLeft.getStickyFaults();
+    frontRight.getStickyFaults();
+
   }
   public void drive(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed){
     drive(leftSpeed.getAsDouble(), rightSpeed.getAsDouble());
