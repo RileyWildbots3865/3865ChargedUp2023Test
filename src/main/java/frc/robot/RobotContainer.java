@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
   private final CommandXboxController m_driverOne = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  private final CommandXboxController m_driverTwo = new CommandXboxController(OperatorConstants.kPneumaticsControllerPort);
   private final subDriveTrain driveTrain = new subDriveTrain(); 
   private final subPneumatics george = new subPneumatics();
 
@@ -42,15 +43,15 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(-m_driverOne.getLeftY(), 0.06), 
       () -> MathUtil.applyDeadband(-m_driverOne.getRightY(), 0.06)),
       driveTrain));
-    m_driverOne.a().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
-    m_driverOne.a().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverOne.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
-    m_driverOne.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverOne.y().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward)));
-    m_driverOne.y().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
-    m_driverOne.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
-    m_driverOne.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
-    m_driverOne.rightBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+    m_driverTwo.a().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
+    m_driverTwo.a().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
+    m_driverTwo.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
+    m_driverTwo.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
+    m_driverTwo.y().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward)));
+    m_driverTwo.y().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
+    m_driverTwo.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
+    m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
+    m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
 
   }
 
