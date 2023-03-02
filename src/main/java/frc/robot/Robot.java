@@ -48,7 +48,12 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     if (autoTimer.get() < 3) {
-        System.out.println("yes yes yes yes yes");
+        driveTrain.tankdrive(0.5, 0.5);
+    } else if (autoTimer.get() < 6) {
+      driveTrain.tankdrive(0, 0);
+    } else {
+      driveTrain.tankdrive(0, 0);
+      autoTimer.stop();
     }
   }
 

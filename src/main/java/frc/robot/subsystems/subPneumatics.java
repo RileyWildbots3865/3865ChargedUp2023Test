@@ -24,11 +24,8 @@ public class subPneumatics extends SubsystemBase {
     myCompressor = new Compressor(PneumaticsModuleType.CTREPCM);
     myCompressor.enableDigital();
     liftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, PneumaticConstants.liftSolenoid);
-    //liftSolenoid = new Solenoid(PneumaticConstants.liftSolenoid, PneumaticsModuleType.CTREPCM, 0);
-    clawTiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);// = new DoubleSolenoid(PneumaticConstants.clawTiltSolenoidright, PneumaticsModuleType.CTREPCM, 0,1);
-    //clawTiltSolenoidright = new DoubleSolenoid(PneumaticConstants.clawTiltSolenoidright, PneumaticsModuleType.CTREPCM, 2,3);
+    clawTiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
     clawActuator = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 3,2);
-    //clawActuatorright = new DoubleSolenoid(PneumaticConstants.clawActuatorright, PneumaticsModuleType.CTREPCM, 6,7);
   }
 
   @Override
