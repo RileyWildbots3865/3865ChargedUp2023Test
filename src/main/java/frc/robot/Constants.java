@@ -25,7 +25,6 @@ public final class Constants {
     public static final int clawTiltSolenoid = 1;
     public static final int clawActuator = 3;
 
-
+    
   }
-
 }
