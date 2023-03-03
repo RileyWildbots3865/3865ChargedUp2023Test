@@ -27,10 +27,16 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
   private final CommandXboxController m_driverOne = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  private final CommandXboxController m_driverTwo = new CommandXboxController(OperatorConstants.kPneumaticsControllerPort);
+  private final JoysCommandXboxControllertick CommandXboxController = new Joystick(OperatorConstants.kPneumaticsControllerPort);
   private final subDriveTrain driveTrain = new subDriveTrain(); 
   private final subPneumatics george = new subPneumatics();
 
+  public JoystickButton liftSolenoid = new JoystickButton(playstick, 1);
+  public JoystickButton clawTiltSolenoid = new JoystickButton(playstick, 4);
+  public JoystickButton clawTiltSolenoid = new JoystickButton(playstick, 2);
+  public JoystickButton clawActuator = new JoystickButton(playstick, 3);
+  public JoystickButton clawActuator = new JoystickButton(playstick, 5);
+  //public JoystickButton reverseConveyorButton = new JoystickButton(playstick, 6);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -52,6 +58,7 @@ public class RobotContainer {
     m_driverTwo.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
     m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
     m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+
 
   }
 
