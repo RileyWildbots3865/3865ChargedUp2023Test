@@ -49,14 +49,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    if (autoTimer.get() < 3) {
-        driveTrain.tankdrive(-0.5, -0.5);
-    } else if (autoTimer.get() < 6) {
-      driveTrain.tankdrive(0, 0);
-    } else {
-      driveTrain.tankdrive(0, 0);
-      autoTimer.stop();
-    }
+    
   }
 
   @Override

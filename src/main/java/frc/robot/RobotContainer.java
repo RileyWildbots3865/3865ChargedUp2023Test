@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.subDriveTrain;
+import frc.robot.commands.autoCrossLine;
 import frc.robot.subsystems.subPneumatics;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Compressor;
@@ -23,25 +24,23 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class RobotContainer {
   private final CommandXboxController m_driverOne = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  private final JoysCommandXboxControllertick CommandXboxController = new Joystick(OperatorConstants.kPneumaticsControllerPort);
+  private final CommandXboxController m_driverTwo = new CommandXboxController(OperatorConstants.kPneumaticsControllerPort);
   private final subDriveTrain driveTrain = new subDriveTrain(); 
   private final subPneumatics george = new subPneumatics();
-
-  public JoystickButton liftSolenoid = new JoystickButton(playstick, 1);
-  public JoystickButton clawTiltSolenoid = new JoystickButton(playstick, 4);
-  public JoystickButton clawTiltSolenoid = new JoystickButton(playstick, 2);
-  public JoystickButton clawActuator = new JoystickButton(playstick, 3);
-  public JoystickButton clawActuator = new JoystickButton(playstick, 5);
-  //public JoystickButton reverseConveyorButton = new JoystickButton(playstick, 6);
+  SendableChooser<Command> chooser = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    chooser.setDefaultOption("CrossLine", new autoCrossLine(driveTrain));
+    SmartDashboard.putData("Auto Options", chooser);
   }
 
   private void configureBindings() {
@@ -53,11 +52,11 @@ public class RobotContainer {
     m_driverTwo.a().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
     m_driverTwo.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
     m_driverTwo.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverTwo.y().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward)));
-    m_driverTwo.y().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
+    m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward))); //trigger
+    m_driverTwo.rightBumper().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff))); //3
     m_driverTwo.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
     m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
-    m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+    m_driverTwo.y().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
 
 
   }
@@ -69,6 +68,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return new InstantCommand();
+    return chooser.getSelected();
   }
 }
