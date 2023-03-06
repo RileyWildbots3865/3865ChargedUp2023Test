@@ -33,6 +33,11 @@ public class subDriveTrain extends SubsystemBase {
     frontRight.restoreFactoryDefaults();
     backRight.restoreFactoryDefaults();
 
+    frontLeft.setOpenLoopRampRate(0.1);
+    frontRight.setOpenLoopRampRate(0.1);
+    backLeft.setOpenLoopRampRate(0.1);
+    backRight.setOpenLoopRampRate(0.1);
+
     frontLeft.setInverted(DriveConstants.frontLeftInverted);
     backLeft.setInverted(DriveConstants.backLeftInverted);
     frontRight.setInverted(DriveConstants.frontRightInverted);

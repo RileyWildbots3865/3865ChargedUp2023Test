@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.subDriveTrain;
 
-public class autoCrossLine extends CommandBase {
+public class autoOverCharge extends CommandBase {
   subDriveTrain driveTrain;
   Timer time;
-  public autoCrossLine(subDriveTrain driveTrain) {
+  public autoOverCharge(subDriveTrain driveTrain) {
     this.driveTrain = driveTrain;
     addRequirements(driveTrain);
     time = new Timer();
@@ -27,8 +27,8 @@ public class autoCrossLine extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!time.hasElapsed(3)) {
-      driveTrain.drive(-.9, -.9);
+    if (!time.hasElapsed(5.5)) {
+      driveTrain.drive(1, 1);
     } else {
       driveTrain.drive(0, 0);
     }
