@@ -16,6 +16,10 @@ public final class Constants {
     public static final boolean frontRightInverted = true;
     public static final int backRight = 3;
     public static final boolean backRightInverted = true;
+    public static final int clawMotor = 14
+    public static final boolean clawMotorInverted = true() {
+      
+    }
     public static final double speedFactor = 0.5;
 
   

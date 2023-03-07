@@ -32,11 +32,16 @@ public class subDriveTrain extends SubsystemBase {
     backLeft.restoreFactoryDefaults();
     frontRight.restoreFactoryDefaults();
     backRight.restoreFactoryDefaults();
+    
+   
+    ramp rate is essentially the speed at which a generator can increase or decrease generation. 
+    * Generating units have different characteristics 
+    making some more suited to supplying certain needed functions.
 
-    frontLeft.setOpenLoopRampRate(0.1);
-    frontRight.setOpenLoopRampRate(0.1);
-    backLeft.setOpenLoopRampRate(0.1);
-    backRight.setOpenLoopRampRate(0.1);
+     frontLeft.setOpenLoopRampRate(0.1);
+     frontRight.setOpenLoopRampRate(0.1);
+    /backLeft.setOpenLoopRampRate(0.1);
+     backRight.setOpenLoopRampRate(0.1);
 
     frontLeft.setInverted(DriveConstants.frontLeftInverted);
     backLeft.setInverted(DriveConstants.backLeftInverted);
