@@ -58,7 +58,8 @@ public class RobotContainer {
     m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff))); //3
     m_driverTwo.y().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
     m_driverTwo.y().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
-    m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+    m_driverTwo.leftBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+    m_driverTwo.rightBumper().ontrue(new InstantCommand(() -> driveTrain.clawMotor.toggle()));
   
     //1 = a = trigger
     //2 = b
