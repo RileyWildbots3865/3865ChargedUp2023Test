@@ -1,4 +1,5 @@
 // Copyright (c) FIRST and other WPILib contributors.
+// Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
@@ -7,7 +8,6 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.subDriveTrain;
 import frc.robot.commands.autoCrossLine;
-import frc.robot.commands.autoOverCharge;
 import frc.robot.subsystems.subPneumatics;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Compressor;
@@ -41,7 +41,6 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
     chooser.setDefaultOption("CrossLine", new autoCrossLine(driveTrain));
-    chooser.addOption("OverChargeStation", new autoOverCharge(driveTrain));
     SmartDashboard.putData("Auto Options", chooser);
   }
 
@@ -50,23 +49,17 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(-m_driverOne.getLeftY(), 0.06), 
       () -> MathUtil.applyDeadband(-m_driverOne.getRightY(), 0.06)),
       driveTrain));
-    m_driverTwo.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
-    m_driverTwo.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverTwo.a().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
+    m_driverTwo.a().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
     m_driverTwo.a().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverTwo.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward))); //trigger
-    m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff))); //3
-    m_driverTwo.y().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
-    m_driverTwo.y().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
-    m_driverTwo.leftBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
-    m_driverTwo.rightBumper().ontrue(new InstantCommand(() -> driveTrain.clawMotor.toggle()));
-  
-    //1 = a = trigger
-    //2 = b
-    //3 = x
-    //4 = y
-    //5 = leftBumper
-    //6 = rightBumper
+    m_driverTwo.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
+    m_driverTwo.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
+    m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward))); //trigger
+    m_driverTwo.rightBumper().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff))); //3
+    m_driverTwo.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
+    m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
+    m_driverTwo.y().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+
+
   }
 
   /**
