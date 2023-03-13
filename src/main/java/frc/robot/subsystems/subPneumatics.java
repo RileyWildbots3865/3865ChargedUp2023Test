@@ -18,7 +18,7 @@ public class subPneumatics extends SubsystemBase {
   public DoubleSolenoid clawActuator;
   public Compressor myCompressor;
 
-
+  
 
   public subPneumatics() {
     myCompressor = new Compressor(PneumaticsModuleType.CTREPCM);
