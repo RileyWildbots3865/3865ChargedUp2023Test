@@ -27,4 +27,7 @@ public final class Constants {
 
     
   }
+  public static class RandomStuff{
+    public static final int clawMotor = 1;
+  }
 }
