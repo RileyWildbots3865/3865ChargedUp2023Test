@@ -49,15 +49,21 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(-m_driverOne.getLeftY(), 0.06), 
       () -> MathUtil.applyDeadband(-m_driverOne.getRightY(), 0.06)),
       driveTrain));
-    m_driverTwo.a().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
-    m_driverTwo.a().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverTwo.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
+
+      //a = trigger
+      //right bumper = 6
+      //x = 3
+      //b = 2
+      //y = 2
+    m_driverTwo.x().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kForward)));
     m_driverTwo.x().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
-    m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward))); //trigger
-    m_driverTwo.rightBumper().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff))); //3
-    m_driverTwo.b().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
-    m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
-    m_driverTwo.y().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
+    m_driverTwo.b().onTrue(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kReverse)));
+    m_driverTwo.b().onFalse(new InstantCommand(() -> george.clawTiltSolenoid.set(Value.kOff)));
+    m_driverTwo.y().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kForward))); //trigger on
+    m_driverTwo.y().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff))); //3 off
+    m_driverTwo.a().onTrue(new InstantCommand(() -> george.clawActuator.set(Value.kReverse)));
+    m_driverTwo.a().onFalse(new InstantCommand(() -> george.clawActuator.set(Value.kOff)));
+    m_driverTwo.rightBumper().onTrue(new InstantCommand(() -> george.liftSolenoid.toggle()));
 
 
   }
